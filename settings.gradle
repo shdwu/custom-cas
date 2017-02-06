@@ -1,0 +1,7 @@
+rootProject.name = 'custom-cas'
+
+include "webapp:cas-server-webapp-init"
+include "webapp:cas-server-webapp-session-redis"
+include "webapp:cas-server-webapp-config"
+include "webapp:cas-server-webapp"
+
