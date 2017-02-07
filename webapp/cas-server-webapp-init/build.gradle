@@ -1,14 +1,8 @@
-group 'com.github.com'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.5
-
-repositories {
-    mavenCentral()
-}
-
+description = "Apereo CAS Web Application Initializer"
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile libraries.spring
+    compile libraries.springboot
+
+//    compile project(":core:cas-server-core-web")
+    compile project(":core:cas-server-core-util")
 }
