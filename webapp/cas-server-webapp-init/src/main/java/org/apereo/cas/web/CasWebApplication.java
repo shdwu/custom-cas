@@ -22,7 +22,7 @@ import org.springframework.context.annotation.FilterType;
                 MetricsDropwizardAutoConfiguration.class,
                 VelocityAutoConfiguration.class}
 )
-@ComponentScan(basePackages = {"org.apereo.cas", "org.pac4j.springframework"},
+@ComponentScan(basePackages = {"org.apereo.cas"},
         excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX,
                 pattern = "org\\.pac4j\\.springframework\\.web\\.ApplicationLogoutController")})
 public class CasWebApplication {

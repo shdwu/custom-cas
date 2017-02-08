@@ -2,6 +2,13 @@ description = "Custom Apereo Central Authentication Service $version"
 
 defaultTasks "clean", "build"
 
+ext {
+    publishSnapshots = Boolean.getBoolean("publishSnapshots")
+    publishReleases = Boolean.getBoolean("publishReleases")
+    sonatypeUsername = System.getProperty("sonatypeUsername")
+    sonatypePassword = System.getProperty("sonatypePassword")
+}
+
 
 apply from: rootProject.file("gradle/overrides.gradle")
 apply from: rootProject.file("gradle/dependencies.gradle")

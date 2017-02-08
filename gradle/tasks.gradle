@@ -1,10 +1,12 @@
 task pathingJar(type: Jar, description: "Produces a 'pathing' JAR whose manifest class-path contains project runtime dependencies") {
     dependsOn configurations.runtime
     appendix = "pathing"
- 
+
+
     doFirst {
         manifest {
             attributes "Class-Path": configurations.runtime.files.collect {
+                println it.toURL().toString()
                 it.toURL().toString().replaceFirst("/file:/+/", "/")}.join(" ")
         }
     }
