@@ -17,6 +17,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -31,6 +32,7 @@ import java.nio.charset.StandardCharsets;
  * Created by wudongshen on 2017/2/8.
  */
 @Configuration("casEmbeddedContainerConfiguration")
+@EnableConfigurationProperties({CasConfigurationProperties.class, ServerProperties.class})
 public class CasEmbeddedContainerConfiguration {
     private static final Logger LOGGER = LoggerFactory.getLogger(CasEmbeddedContainerConfiguration.class);
 

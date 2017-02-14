@@ -40,7 +40,7 @@ import org.springframework.web.socket.server.support.HttpSessionHandshakeInterce
  * @author Misagh Moayyed
  * @since 5.0.0
  */
-//@Configuration("casReportsConfiguration")
+@Configuration("casReportsConfiguration")
 @EnableConfigurationProperties(CasConfigurationProperties.class)
 @EnableWebSocketMessageBroker
 public class CasReportsConfiguration extends AbstractWebSocketMessageBrokerConfigurer {

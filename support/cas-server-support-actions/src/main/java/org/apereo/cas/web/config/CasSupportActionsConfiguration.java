@@ -46,7 +46,7 @@ import java.util.List;
  * @author Misagh Moayyed
  * @since 5.0.0
  */
-//@Configuration("casSupportActionsConfiguration")
+@Configuration("casSupportActionsConfiguration")
 @EnableConfigurationProperties(CasConfigurationProperties.class)
 @EnableTransactionManagement
 public class CasSupportActionsConfiguration {

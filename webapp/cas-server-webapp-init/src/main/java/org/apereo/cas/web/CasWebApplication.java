@@ -25,9 +25,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
                 MetricsDropwizardAutoConfiguration.class,
                 VelocityAutoConfiguration.class}
 )
-//@ComponentScan(basePackages = {"org.apereo.cas"},
-//        excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX,
-//                pattern = "org\\.pac4j\\.springframework\\.web\\.ApplicationLogoutController")})
+@ComponentScan(basePackages = {"org.apereo.cas"},
+        excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX,
+                pattern = "org\\.pac4j\\.springframework\\.web\\.ApplicationLogoutController")})
 @EnableAsync
 @EnableConfigurationProperties(CasConfigurationProperties.class)
 public class CasWebApplication {

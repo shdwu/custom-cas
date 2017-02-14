@@ -5,4 +5,5 @@ dependencies {
 
     compile project(":core:cas-server-core-web")
     compile project(":core:cas-server-core-util")
+
 }

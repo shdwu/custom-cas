@@ -82,7 +82,6 @@ public class CasSecurityContextConfiguration extends WebMvcConfigurerAdapter {
         return interceptor;
     }
 
-    @RefreshScope
     @Bean
     public SecurityInterceptor requiresAuthenticationStatusInterceptor() {
         return new SecurityInterceptor(new
@@ -90,7 +89,6 @@ public class CasSecurityContextConfiguration extends WebMvcConfigurerAdapter {
                 "IpClient");
     }
 
-    @RefreshScope
     @Bean
     public Config config() {
         try {
@@ -126,7 +124,6 @@ public class CasSecurityContextConfiguration extends WebMvcConfigurerAdapter {
         return new Config();
     }
 
-    @RefreshScope
     @Bean
     public SecurityInterceptor requiresAuthenticationStatusAdminEndpointsInterceptor() {
         final Config cfg = config();

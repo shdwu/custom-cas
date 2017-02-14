@@ -20,13 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration("casApplicationContextConfiguration")
 public class CasApplicationContextConfiguration {
 
-    // TODO 感觉没有什么用
     @Bean
     public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
         return new DefaultAdvisorAutoProxyCreator();
     }
 
-    // TODO 感觉没有什么用
     @Bean
     protected UrlFilenameViewController passThroughController(){
         return new UrlFilenameViewController();
