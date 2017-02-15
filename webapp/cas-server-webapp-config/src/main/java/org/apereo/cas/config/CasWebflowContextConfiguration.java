@@ -100,7 +100,6 @@ public class CasWebflowContextConfiguration {
         return new LogoutConversionService();
     }
 
-    @RefreshScope
     @Bean
     public ViewFactoryCreator viewFactoryCreator() {
         final MvcViewFactoryCreator resolver = new MvcViewFactoryCreator();
@@ -167,7 +166,6 @@ public class CasWebflowContextConfiguration {
         }
     }
 
-    @RefreshScope
     @Bean
     public FlowBuilderServices builder() {
         final FlowBuilderServicesBuilder builder = new FlowBuilderServicesBuilder(this.applicationContext);

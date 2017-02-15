@@ -146,7 +146,6 @@ public class CasSecurityContextConfiguration extends WebMvcConfigurerAdapter {
         return new CasAdminStatusInterceptor();
     }
 
-    @RefreshScope
     @Bean
     public EndpointHandlerMappingCustomizer mappingCustomizer() {
         return mapping -> mapping.setInterceptors(new Object[]{statusInterceptor()});

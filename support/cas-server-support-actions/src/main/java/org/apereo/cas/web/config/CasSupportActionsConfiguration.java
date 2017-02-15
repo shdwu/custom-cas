@@ -153,7 +153,6 @@ public class CasSupportActionsConfiguration {
         return a;
     }
 
-    @RefreshScope
     @Bean
     public Action initialFlowSetupAction() {
         final InitialFlowSetupAction bean = new InitialFlowSetupAction();
@@ -164,7 +163,6 @@ public class CasSupportActionsConfiguration {
         return bean;
     }
 
-    @RefreshScope
     @Bean
     public Action initialAuthenticationRequestValidationAction() {
         final InitialAuthenticationRequestValidationAction a =
@@ -173,7 +171,6 @@ public class CasSupportActionsConfiguration {
         return a;
     }
 
-    @RefreshScope
     @Bean
     public Action genericSuccessViewAction() {
         final GenericSuccessViewAction a = new GenericSuccessViewAction(
