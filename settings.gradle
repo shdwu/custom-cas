@@ -128,3 +128,5 @@ include "support:cas-server-support-validation"
 include "support:cas-server-support-actions"
 include "support:cas-server-support-actions-aup-ldap"
 include "support:cas-server-support-actions-aup-webflow"
+
+include "ext:cas-server-ext-login"

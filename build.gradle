@@ -75,6 +75,7 @@ subprojects {
     apply plugin: "propdeps-idea"
     apply plugin: "propdeps-eclipse"
 
+    compileJava.options.encoding = "UTF-8"
 
     apply from: rootProject.file("gradle/tasks.gradle")
 

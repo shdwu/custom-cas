@@ -1,0 +1,10 @@
+description = "Apereo CAS Web Ext User"
+dependencies {
+    compile libraries.spring
+    compile libraries.springboot
+    compile libraries.springbootjpa
+    compile libraries.springbootredis
+    compile project(":core:cas-server-core-authentication")
+    compile project(":api:cas-server-core-api-authentication")
+    compileOnly "org.projectlombok:lombok:1.16.14"
+}
