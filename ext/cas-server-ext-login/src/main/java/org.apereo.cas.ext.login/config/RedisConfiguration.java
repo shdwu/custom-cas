@@ -1,36 +1,35 @@
 package org.apereo.cas.ext.login.config;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 
 /**
  * Created by wudongshen on 2017/2/17.
  */
 @Configuration
+@EnableConfigurationProperties(RedisConfig.class)
 public class RedisConfiguration {
 
+    @Autowired
+    private RedisConfig redisConfig;
+
     @Bean
-    public StringRedisTemplate template(RedisConnectionFactory factory) {
-        ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        om.registerModule(new JodaModule());
+    public <K, V> RedisTemplate<K, V> redisTemplate() {
+        RedisTemplate<K, V> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory());
+        return redisTemplate;
+    }
 
-        Jackson2JsonRedisSerializer serializer = new
-                Jackson2JsonRedisSerializer<>(Object.class);
-        serializer.setObjectMapper(om);
-
-        StringRedisTemplate template = new StringRedisTemplate(factory);
-        template.setValueSerializer(serializer);
-        template.setHashValueSerializer(serializer);
-        template.afterPropertiesSet();
-
-        return template;
+    @Bean
+    public JedisConnectionFactory redisConnectionFactory() {
+        JedisConnectionFactory conn = new JedisConnectionFactory();
+        conn.setHostName(redisConfig.getHost());
+        conn.setPort(redisConfig.getPort());
+        conn.setTimeout(redisConfig.getTimeout());
+        return conn;
     }
 }

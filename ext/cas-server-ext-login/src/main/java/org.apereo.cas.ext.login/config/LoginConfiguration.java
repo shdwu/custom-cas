@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.annotation.PostConstruct;
 import java.util.Map;
@@ -22,13 +23,15 @@ public class LoginConfiguration {
     @Qualifier("authenticationHandlersResolvers")
     private Map authenticationHandlersResolvers;
 
-
     @Autowired
     @Qualifier("personDirectoryPrincipalResolver")
     private PrincipalResolver personDirectoryPrincipalResolver;
 
     @Autowired
     private JpaRepositoryFactory jpaRepositoryFactory;
+
+    @Autowired
+    private RedisTemplate<String, Integer> redisTemplate;
 
 
     @PostConstruct
@@ -38,10 +41,10 @@ public class LoginConfiguration {
                 personDirectoryPrincipalResolver);
     }
 
-
     private AuthenticationHandler queryUserAuthenticationHandle(){
         final QueryUserAuthenticationHandle quah = new QueryUserAuthenticationHandle();
         quah.setUserRepository(jpaRepositoryFactory.getRepository(UserRepository.class));
+        quah.setRedisTemplate(redisTemplate);
         return quah;
     }
 

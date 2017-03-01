@@ -47,10 +47,28 @@
         To enable AUP workflows, replace the 'success' transition with the following:
         <transition on="success" to="acceptableUsagePolicyCheck" />
         -->
-        <transition on="success" to="sendTicketGrantingTicket"/>
+        <!--<transition on="success" to="sendTicketGrantingTicket"/>-->
+        <transition on="success" to="generateVlidateCode"/>
         <transition on="successWithWarnings" to="showMessages"/>
         <transition on="authenticationFailure" to="handleAuthenticationFailure"/>
         <transition on="error" to="initializeLoginForm"/>
+    </action-state>
+
+    <action-state id="generateVlidateCode">
+        <evaluate expression="generateVlidateCodeAction" />
+        <transition on="success" to="casVlidateCodeForm"/>
+        <transition on="error" to="initializeLoginForm" />
+    </action-state>
+
+    <view-state id="casVlidateCodeForm" view="casVlidateCodeView" model="vlidateCode">
+        <transition on="submit" to="realVerify"/>
+    </view-state>
+
+
+    <action-state id="realVerify">
+        <evaluate expression="vlidateCodeAuthenticationAction"/>
+        <transition on="success" to="sendTicketGrantingTicket"/>
+        <transition on="error" to="casVlidateCodeView"/>
     </action-state>
 
     <view-state id="showMessages" view="casLoginMessageView">

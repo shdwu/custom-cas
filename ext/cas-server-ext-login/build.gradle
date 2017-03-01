@@ -5,6 +5,8 @@ dependencies {
     compile libraries.springbootjpa
     compile libraries.springbootredis
     compile project(":core:cas-server-core-authentication")
+    compile project(":core:cas-server-core-web")
+    compile project(":core:cas-server-core-webflow")
     compile project(":api:cas-server-core-api-authentication")
     compileOnly "org.projectlombok:lombok:1.16.14"
 }
