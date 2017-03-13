@@ -26,9 +26,9 @@ import java.security.GeneralSecurityException;
  */
 public abstract class AbstractUsernamePasswordAuthenticationHandler extends AbstractPreAndPostProcessingAuthenticationHandler {
 
-    private PasswordEncoder passwordEncoder = NoOpPasswordEncoder.getInstance();
+    protected PasswordEncoder passwordEncoder = NoOpPasswordEncoder.getInstance();
 
-    private PrincipalNameTransformer principalNameTransformer = formUserId -> formUserId;
+    protected PrincipalNameTransformer principalNameTransformer = formUserId -> formUserId;
 
     private Predicate<Credential> credentialSelectionPredicate = Predicates.alwaysTrue();
 

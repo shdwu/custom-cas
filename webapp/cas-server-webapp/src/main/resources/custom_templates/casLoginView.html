@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="edge" />
+</head>
+
+<body id="cas" class="login">
+<div layout:fragment="content">
+    <div id="banner">
+        <div class="container">
+            <div class="imagebox">
+                <div class="lbdiv"><a href="#"><img th:src="@{/assets/images/banner01.jpg}" class="bimg"></a></div>
+                <div class="lbdiv"><a href="#"><img th:src="@{/assets/images/banner02.jpg}" class="bimg"></a></div>
+                <div class="lbdiv"><a href="#"><img th:src="@{/assets/images/banner03.jpg}" class="bimg"></a></div>
+                <div class="lbdiv"><a href="#"><img th:src="@{/assets/images/banner04.jpg}" class="bimg"></a></div>
+                <div class="lbdiv"><a href="#"><img th:src="@{/assets/images/banner05.jpg}" class="bimg"></a></div>
+                <div class="lbdiv"><a href="#"><img th:src="@{/assets/images/banner06.jpg}" class="bimg"></a></div>
+            </div>
+            <div class="pages"></div>
+        </div>
+    </div>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header"><p>办公门户账号登录<span> </span></p></div>
+            <div class="login-content">
+
+                <form method="post" id="fm1" th:object="${credential}">
+                    <div class="error-notice" id="error-notice" >
+                        <span th:each="err : ${#fields.hasErrors('*')} ? ${#fields.errors('*')}" th:utext="${err}"/>
+                    </div>
+                    <div class="uni-item"><input type="text" placeholder="请输入用户名" class="username" id="username" th:field="*{username}"></div>
+                    <div class="uni-item password"><input type="password" placeholder="请输入密码" id="password" class="pwd" th:field="*{password}">
+                    </div>
+                    <input type="hidden" id="execution" name="execution" th:value="${flowExecutionKey}"/>
+                    <input type="hidden" id="geolocation" name="geolocation"/>
+                    <input type="hidden" id="_eventId" name="_eventId" value="login"/>
+                    <div class="vcode">
+                        <div class="vcode-area"><input type="text" placeholder="请输入验证码" maxlength="4" minlength="4"
+                                                       class="vncode" th:field="*{vlidateCode}"></div>
+                        <button type="button" id="sendValidateCode" class="send-area">发送验证码</button>
+                    </div>
+                    <div id="login" class="login-btn">立即登录</div>
+                    <div class="iforgot"><a href="#">忘记密码？</a></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

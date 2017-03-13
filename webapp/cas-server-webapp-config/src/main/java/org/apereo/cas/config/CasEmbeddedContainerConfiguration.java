@@ -51,6 +51,7 @@ public class CasEmbeddedContainerConfiguration {
         final TomcatEmbeddedServletContainerFactory tomcat =
                 new TomcatEmbeddedServletContainerFactory();
 
+
         final org.apereo.cas.configuration.model.core.ServerProperties.Ajp ajp =
                 casProperties.getServer().getAjp();
 
@@ -79,16 +80,17 @@ public class CasEmbeddedContainerConfiguration {
         }
 
         if (casProperties.getServer().getHttp().isEnabled()) {
-            LOGGER.debug("Creating HTTP configuration for the embedded tomcat container...");
-            final Connector connector = new Connector(casProperties.getServer().getHttp().getProtocol());
-
-            int port = casProperties.getServer().getHttp().getPort();
-            if (port <= 0) {
-                port = SocketUtils.findAvailableTcpPort();
-            }
-            LOGGER.debug("Set HTTP post to {}", port);
-            connector.setPort(port);
-            tomcat.addAdditionalTomcatConnectors(connector);
+//            LOGGER.debug("Creating HTTP configuration for the embedded tomcat container...");
+//            final Connector connector = new Connector(casProperties.getServer().getHttp().getProtocol());
+//
+//            int port = casProperties.getServer().getHttp().getPort();
+//            if (port <= 0) {
+//                port = SocketUtils.findAvailableTcpPort();
+//            }
+//            LOGGER.debug("Set HTTP post to {}", port);
+//            connector.setPort(port);
+//            tomcat.addAdditionalTomcatConnectors(connector);
+            tomcat.setPort(casProperties.getServer().getHttp().getPort());
         }
 
         tomcat.getAdditionalTomcatConnectors()

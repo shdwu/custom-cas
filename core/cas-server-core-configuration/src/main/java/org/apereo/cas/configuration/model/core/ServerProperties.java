@@ -224,7 +224,7 @@ public class ServerProperties {
     
     public static class Http {
         private boolean enabled = true;
-        private int port = 8080;
+        private int port = 18080;
         private String protocol = "org.apache.coyote.http11.Http11NioProtocol";
 
         public String getProtocol() {

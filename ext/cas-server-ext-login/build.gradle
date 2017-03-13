@@ -9,4 +9,12 @@ dependencies {
     compile project(":core:cas-server-core-webflow")
     compile project(":api:cas-server-core-api-authentication")
     compileOnly "org.projectlombok:lombok:1.16.14"
+    compile "com.alibaba:fastjson:1.2.24"
+}
+
+javadoc {
+    options{
+        encoding "UTF-8"
+        charSet "UTF-8"
+    }
 }

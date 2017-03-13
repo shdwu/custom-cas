@@ -19,7 +19,7 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
  * @author Misagh Moayyed
  * @since 5.0.0
  */
-//@Configuration("casProtocolViewsConfiguration")
+@Configuration("casProtocolViewsConfiguration")
 @EnableConfigurationProperties(CasConfigurationProperties.class)
 public class CasProtocolViewsConfiguration {
 

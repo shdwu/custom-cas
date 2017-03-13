@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 /**
- * ClassName:ValidatorCodeUtil <br/> Function: TODO ADD FUNCTION. <br/> Reason: TODO ADD REASON. <br/> Date: 2013-4-28 下午03:01:38 <br/>
+ * ClassName:ValidatorCodeUtil
  * 
  * @author Administrator
  * @version
@@ -99,7 +99,7 @@ public class ValidateCodeUtil {
     
     public static String getShortMessageVlidateCode() {
     	Random rnd = new Random();
-    	return String.valueOf(100000 + rnd.nextInt(900000));
+    	return String.valueOf(1000 + rnd.nextInt(9000));
     }
                                                  
     /**

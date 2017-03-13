@@ -35,7 +35,7 @@ import org.springframework.web.servlet.View;
  * @author Misagh Moayyed
  * @since 5.0.0
  */
-//@Configuration("casValidationConfiguration")
+@Configuration("casValidationConfiguration")
 @EnableConfigurationProperties(CasConfigurationProperties.class)
 public class CasValidationConfiguration {
     

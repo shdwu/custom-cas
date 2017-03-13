@@ -1,0 +1,9 @@
+{
+  "@class" : "org.apereo.cas.services.RegexRegisteredService",
+  "serviceId" : "^http://127.*",
+  "name" : "Dev",
+  "theme" : "apereo",
+  "id" : 10000003,
+  "description" : "Dev sample service",
+  "evaluationOrder" : 1
+}

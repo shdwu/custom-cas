@@ -14,6 +14,8 @@ import org.springframework.webflow.engine.builder.BinderConfiguration;
 import org.springframework.webflow.engine.support.TransitionExecutingFlowExecutionExceptionHandler;
 import org.springframework.webflow.execution.repository.NoSuchFlowExecutionException;
 
+import javax.security.auth.login.FailedLoginException;
+
 /**
  * This is {@link DefaultWebflowConfigurer}.
  *
@@ -34,7 +36,7 @@ public class DefaultWebflowConfigurer extends AbstractCasWebflowConfigurer {
         createRememberMeAuthnWebflowConfig(flow);
     }
 
-    private void createRememberMeAuthnWebflowConfig(final Flow flow) {
+    protected void createRememberMeAuthnWebflowConfig(final Flow flow) {
         if (casProperties.getTicket().getTgt().getRememberMe().isEnabled()) {
             createFlowVariable(flow, CasWebflowConstants.VAR_ID_CREDENTIAL, RememberMeUsernamePasswordCredential.class);
             final ViewState state = (ViewState) flow.getState(CasWebflowConstants.STATE_ID_VIEW_LOGIN_FORM);
@@ -99,6 +101,7 @@ public class DefaultWebflowConfigurer extends AbstractCasWebflowConfigurer {
         h.add(NoSuchFlowExecutionException.class, CasWebflowConstants.STATE_ID_VIEW_SERVICE_ERROR);
         h.add(UnauthorizedServiceException.class, CasWebflowConstants.STATE_ID_SERVICE_UNAUTHZ_CHECK);
         h.add(UnauthorizedServiceForPrincipalException.class, CasWebflowConstants.STATE_ID_SERVICE_UNAUTHZ_CHECK);
+//        h.add(FailedLoginException.class, CasWebflowConstants.STATE_ID_VIEW_LOGIN_FORM);
         flow.getExceptionHandlerSet().add(h);
     }
 

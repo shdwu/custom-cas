@@ -200,7 +200,8 @@ public class AuthenticationExceptionHandler {
 
         // output message and return handlerErrorName
         final String messageCode = this.messageBundlePrefix + handlerErrorName;
-        messageContext.addMessage(new MessageBuilder().error().code(messageCode).build());
+//        messageContext.addMessage(new MessageBuilder().error().code(messageCode).build());
+        messageContext.addMessage(new MessageBuilder().error().defaultText(e.getMessage()).build());
         return handlerErrorName;
     }
 

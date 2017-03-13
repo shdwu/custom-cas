@@ -28,6 +28,7 @@ public class UsernamePasswordCredential implements Credential, Serializable {
     @Size(min=1, message = "required.password")
     private String password;
 
+
     /** Default constructor. */
     public UsernamePasswordCredential() {}
 

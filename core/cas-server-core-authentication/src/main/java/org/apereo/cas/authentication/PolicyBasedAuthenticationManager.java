@@ -85,6 +85,7 @@ public class PolicyBasedAuthenticationManager extends AbstractAuthenticationMana
         super(map);
     }
 
+
     @Override
     protected AuthenticationBuilder authenticateInternal(final AuthenticationTransaction transaction)
             throws AuthenticationException {
@@ -95,6 +96,9 @@ public class PolicyBasedAuthenticationManager extends AbstractAuthenticationMana
         final Set<AuthenticationHandler> handlerSet = this.authenticationHandlerResolver
                 .resolve(this.handlerResolverMap.keySet(), transaction);
 
+        final StringBuffer errorMessage = new StringBuffer();
+
+
         final boolean success = credentials.stream().anyMatch(credential -> {
             final boolean isSatisfied = handlerSet.stream().filter(handler -> handler.supports(credential))
                     .anyMatch(handler -> {
@@ -104,6 +108,7 @@ public class PolicyBasedAuthenticationManager extends AbstractAuthenticationMana
                         } catch (final GeneralSecurityException e) {
                             logger.info("{} failed authenticating {}", handler.getName(), credential);
                             logger.debug("{} exception details: {}", handler.getName(), e.getMessage());
+                            errorMessage.append(e.getMessage());
                             builder.addFailure(handler.getName(), e.getClass());
                         } catch (final PreventedException e) {
                             logger.error("{}: {}  (Details: {})", handler.getName(), e.getMessage(), e.getCause().getMessage());
@@ -123,7 +128,7 @@ public class PolicyBasedAuthenticationManager extends AbstractAuthenticationMana
         });
 
         if (!success) {
-            evaluateProducedAuthenticationContext(builder);
+            evaluateProducedAuthenticationContext(builder, errorMessage.toString());
         }
 
         return builder;
@@ -133,12 +138,14 @@ public class PolicyBasedAuthenticationManager extends AbstractAuthenticationMana
      * Evaluate produced authentication context.
      *
      * @param builder the builder
+     * @param builder the errorMessage
      * @throws AuthenticationException the authentication exception
      */
-    protected void evaluateProducedAuthenticationContext(final AuthenticationBuilder builder) throws AuthenticationException {
+    protected void evaluateProducedAuthenticationContext(final AuthenticationBuilder builder, String errorMessage) throws AuthenticationException {
         // We apply an implicit security policy of at least one successful authentication
         if (builder.getSuccesses().isEmpty()) {
-            throw new AuthenticationException(builder.getFailures(), builder.getSuccesses());
+//            throw new AuthenticationException(builder.getFailures(), builder.getSuccesses());
+            throw new AuthenticationException(errorMessage);
         }
         // Apply the configured security policy
         if (!this.authenticationPolicy.isSatisfiedBy(builder.build())) {
